@@ -230,10 +230,10 @@ F 5 "V" H 4850 2150 50  0001 L CNN "Spice_Primitive"
 	0    1    1    0   
 $EndComp
 $Comp
-L MCU_ST_STM8:STM8S003F3P U?
+L MCU_ST_STM8:STM8S003F3P U1
 U 1 1 5D99B248
 P 3600 5450
-F 0 "U?" H 3600 6631 50  0000 C CNN
+F 0 "U1" H 3600 6631 50  0000 C CNN
 F 1 "STM8S003F3P" H 3600 6540 50  0000 C CNN
 F 2 "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm" H 3650 6550 50  0001 L CNN
 F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00024550.pdf" H 3550 5050 50  0001 C CNN
@@ -265,11 +265,11 @@ TIM1_CH3
 Text GLabel 2750 5550 0    50   Input ~ 0
 ADC_IN2
 Text GLabel 2750 5650 0    50   Input ~ 0
-COM1
+LED1
 Text GLabel 2750 5750 0    50   Input ~ 0
-COM2
+LED2
 Text GLabel 2750 5850 0    50   Input ~ 0
-COM3
+LED3
 Text GLabel 2750 6050 0    50   Input ~ 0
 NRST
 Wire Wire Line
@@ -299,11 +299,11 @@ Wire Wire Line
 Text GLabel 4400 5150 2    50   Input ~ 0
 SYS_SWIM
 Text GLabel 4400 5250 2    50   Input ~ 0
-LED1
+COM1
 Text GLabel 4400 5350 2    50   Input ~ 0
-LED2
+COM2
 Text GLabel 4400 5450 2    50   Input ~ 0
-LED3
+COM3
 Text GLabel 4400 5550 2    50   Input ~ 0
 UART1_TX
 Text GLabel 4400 5650 2    50   Input ~ 0
