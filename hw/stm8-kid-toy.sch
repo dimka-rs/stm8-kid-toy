@@ -229,4 +229,95 @@ F 5 "V" H 4850 2150 50  0001 L CNN "Spice_Primitive"
 	1    4850 2150
 	0    1    1    0   
 $EndComp
+$Comp
+L MCU_ST_STM8:STM8S003F3P U1
+U 1 1 5D99B248
+P 3600 5450
+F 0 "U1" H 3600 6631 50  0000 C CNN
+F 1 "STM8S003F3P" H 3600 6540 50  0000 C CNN
+F 2 "Package_SO:TSSOP-20_4.4x6.5mm_P0.65mm" H 3650 6550 50  0001 L CNN
+F 3 "http://www.st.com/st-web-ui/static/active/en/resource/technical/document/datasheet/DM00024550.pdf" H 3550 5050 50  0001 C CNN
+	1    3600 5450
+	1    0    0    -1  
+$EndComp
+Text GLabel 2750 4750 0    50   Input ~ 0
+BTN1
+Text GLabel 2750 4850 0    50   Input ~ 0
+BTN2
+Text GLabel 2750 4950 0    50   Input ~ 0
+BTN3
+Wire Wire Line
+	2750 4750 3000 4750
+Wire Wire Line
+	2750 4850 3000 4850
+Wire Wire Line
+	2750 4950 3000 4950
+Text GLabel 2750 5150 0    50   Input ~ 0
+I2C_SCL
+Text GLabel 2750 5250 0    50   Input ~ 0
+I2C_SDA
+Wire Wire Line
+	2750 5150 3000 5150
+Wire Wire Line
+	2750 5250 3000 5250
+Text GLabel 2750 5450 0    50   Input ~ 0
+TIM1_CH3
+Text GLabel 2750 5550 0    50   Input ~ 0
+ADC_IN2
+Text GLabel 2750 5650 0    50   Input ~ 0
+COM1
+Text GLabel 2750 5750 0    50   Input ~ 0
+COM2
+Text GLabel 2750 5850 0    50   Input ~ 0
+COM3
+Text GLabel 2750 6050 0    50   Input ~ 0
+NRST
+Wire Wire Line
+	2750 5450 3000 5450
+Wire Wire Line
+	2750 5550 3000 5550
+Wire Wire Line
+	2750 5650 3000 5650
+Wire Wire Line
+	2750 5750 3000 5750
+Wire Wire Line
+	2750 5850 3000 5850
+Wire Wire Line
+	2750 6050 3000 6050
+Text GLabel 2750 6150 0    50   Input ~ 0
+VCAP
+Wire Wire Line
+	2750 6150 3000 6150
+Text GLabel 3500 4450 0    50   Input ~ 0
+VCC
+Wire Wire Line
+	3500 4450 3600 4450
+Text GLabel 3425 6450 0    50   Input ~ 0
+GND
+Wire Wire Line
+	3425 6450 3600 6450
+Text GLabel 4400 5150 2    50   Input ~ 0
+SYS_SWIM
+Text GLabel 4400 5250 2    50   Input ~ 0
+LED1
+Text GLabel 4400 5350 2    50   Input ~ 0
+LED2
+Text GLabel 4400 5450 2    50   Input ~ 0
+LED3
+Text GLabel 4400 5550 2    50   Input ~ 0
+UART1_TX
+Text GLabel 4400 5650 2    50   Input ~ 0
+UART1_RX
+Wire Wire Line
+	4200 5150 4400 5150
+Wire Wire Line
+	4200 5250 4400 5250
+Wire Wire Line
+	4400 5350 4200 5350
+Wire Wire Line
+	4200 5450 4400 5450
+Wire Wire Line
+	4400 5550 4200 5550
+Wire Wire Line
+	4200 5650 4400 5650
 $EndSCHEMATC
