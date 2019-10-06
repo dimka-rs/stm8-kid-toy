@@ -10,10 +10,19 @@
 
 void main(void)
 {
+	// init clock
+	// init uart for mp3 player and debug
+	// init gpio
+	// init i2c for IMU
+	// init timer 2 for main loop
+	// init timer 1 for buzzer
+
 
     while (1)
     {
-
+		//set 1, read buttons, set leds
+		//set 2, read buttons, set leds
+		//set 3, read buttons, set leds
     }
 }
 
