@@ -43,7 +43,7 @@ PRJ_OBJECTS := $(addprefix $(OUTPUT_DIR)/, $(PRJ_SOURCE:.c=.rel))
 SPL_SRC_DIR = ./STM8S_StdPeriph_Driver/src
 SPL_INC_DIR = ./STM8S_StdPeriph_Driver/inc
 # add all library sources used here
-SPL_SOURCE  = 
+SPL_SOURCE  = stm8s_gpio.c
 SPL_OBJECTS := $(addprefix $(OUTPUT_DIR)/, $(SPL_SOURCE:.c=.rel))
 
 # collect all include folders
@@ -70,3 +70,6 @@ flash: $(TARGET)
 
 clean:
 	rm $(OUTPUT_DIR)/*
+
+size:
+	$(CC_ROOT)/sdnm -A --print-size --size-sort --radix=d $(OUTPUT_DIR)/*rel

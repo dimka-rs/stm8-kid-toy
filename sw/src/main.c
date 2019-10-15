@@ -1,6 +1,8 @@
 /* Includes ------------------------------------------------------------------*/
 #include "stm8s.h"
 #include "main.h"
+#include "clock.h"
+#include "uart1.h"
 
 /* Private defines -----------------------------------------------------------*/
 
@@ -10,19 +12,37 @@
 
 void main(void)
 {
-	// init clock
-	// init uart for mp3 player and debug
-	// init gpio
-	// init i2c for IMU
-	// init timer 2 for main loop
-	// init timer 1 for buzzer
+    // init clock
+    clock_init();
+
+    // init uart for mp3 player and debug
+    uart1_init();
+
+    // init gpio
+    GPIO_Init(COM1_PORT, COM1_PIN, GPIO_MODE_OUT_PP_LOW_SLOW);
+    GPIO_Init(COM2_PORT, COM2_PIN, GPIO_MODE_OUT_PP_LOW_SLOW);
+    GPIO_Init(COM3_PORT, COM3_PIN, GPIO_MODE_OUT_PP_LOW_SLOW);
+
+    GPIO_Init(LED1_PORT, LED1_PIN, GPIO_MODE_OUT_PP_HIGH_SLOW);
+    GPIO_Init(LED2_PORT, LED2_PIN, GPIO_MODE_OUT_PP_HIGH_SLOW);
+    GPIO_Init(LED3_PORT, LED3_PIN, GPIO_MODE_OUT_PP_HIGH_SLOW);
+
+    GPIO_Init(BTN1_PORT, BTN1_PIN, GPIO_MODE_IN_FL_NO_IT);
+    GPIO_Init(BTN2_PORT, BTN2_PIN, GPIO_MODE_IN_FL_NO_IT);
+    GPIO_Init(BTN3_PORT, BTN3_PIN, GPIO_MODE_IN_FL_NO_IT);
+
+    // init i2c for IMU
+
+    // init timer 2 for main loop
+
+    // init timer 1 for buzzer
 
 
     while (1)
     {
-		//set 1, read buttons, set leds
-		//set 2, read buttons, set leds
-		//set 3, read buttons, set leds
+        //set 1, read buttons, set leds
+        //set 2, read buttons, set leds
+        //set 3, read buttons, set leds
     }
 }
 
