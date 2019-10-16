@@ -3,12 +3,27 @@
 #include "main.h"
 #include "clock.h"
 #include "uart1.h"
+#include "delay.h"
 
 /* Private defines -----------------------------------------------------------*/
 
 /* Private function prototypes -----------------------------------------------*/
 
 /* Private functions ---------------------------------------------------------*/
+static void all_leds_on(void)
+{
+    GPIO_WriteLow(LED1_PORT, LED1_PIN);
+    GPIO_WriteLow(LED2_PORT, LED2_PIN);
+    GPIO_WriteLow(LED3_PORT, LED3_PIN);
+}
+
+static void all_leds_off(void)
+{
+    GPIO_WriteHigh(LED1_PORT, LED1_PIN);
+    GPIO_WriteHigh(LED2_PORT, LED2_PIN);
+    GPIO_WriteHigh(LED3_PORT, LED3_PIN);
+}
+
 
 void main(void)
 {
@@ -37,12 +52,71 @@ void main(void)
 
     // init timer 1 for buzzer
 
+    // DEBUG
+
+    GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_SLOW);
 
     while (1)
     {
-        //set 1, read buttons, set leds
-        //set 2, read buttons, set leds
-        //set 3, read buttons, set leds
+        // DEBUG
+        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
+        delay(10000);
+
+        // === set 1 ===
+        GPIO_WriteLow(COM2_PORT, COM2_PIN);
+        GPIO_WriteLow(COM3_PORT, COM3_PIN);
+        GPIO_WriteHigh(COM1_PORT, COM1_PIN);
+        //set leds
+        all_leds_on();
+
+        //read buttons
+        while(GPIO_ReadInputPin(BTN1_PORT, BTN1_PIN));
+        while(GPIO_ReadInputPin(BTN2_PORT, BTN2_PIN));
+        while(GPIO_ReadInputPin(BTN3_PORT, BTN3_PIN));
+        
+        // wait for leds to be seen
+        delay(10000);
+        
+        //clear leds
+        all_leds_off();
+
+        // === set 2 ===
+        GPIO_WriteLow(COM1_PORT, COM1_PIN);
+        GPIO_WriteLow(COM3_PORT, COM3_PIN);
+        GPIO_WriteHigh(COM2_PORT, COM2_PIN);
+        
+        //set leds
+        all_leds_on();
+
+        //read buttons
+        while(GPIO_ReadInputPin(BTN1_PORT, BTN1_PIN));
+        while(GPIO_ReadInputPin(BTN2_PORT, BTN2_PIN));
+        while(GPIO_ReadInputPin(BTN3_PORT, BTN3_PIN));
+
+        // wait for leds to be seen
+        delay(10000);
+
+        //clear leds
+        GPIO_WriteLow(COM1_PORT, COM1_PIN);
+        GPIO_WriteLow(COM2_PORT, COM2_PIN);
+        GPIO_WriteHigh(COM3_PORT, COM3_PIN);
+
+        //set leds
+        all_leds_off();
+
+
+        // === set 3 ===
+        all_leds_on();
+
+        //read buttons
+        while(GPIO_ReadInputPin(BTN1_PORT, BTN1_PIN));
+        while(GPIO_ReadInputPin(BTN2_PORT, BTN2_PIN));
+        while(GPIO_ReadInputPin(BTN3_PORT, BTN3_PIN));
+
+        // wait for leds to be seen
+        delay(10000);
+        //clear leds
+        all_leds_off();
     }
 }
 
