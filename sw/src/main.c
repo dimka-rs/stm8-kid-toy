@@ -6,7 +6,7 @@
 #include "delay.h"
 
 /* Private defines -----------------------------------------------------------*/
-#define DELAY 10000
+#define DELAY 50000
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -77,8 +77,10 @@ void main(void)
     uart1_init();
 
     // init gpio
+#if 0
     sel_row(0);
     led_on(0);
+#endif
 
     GPIO_Init(BTN1_PORT, BTN1_PIN, GPIO_MODE_IN_FL_NO_IT);
     GPIO_Init(BTN2_PORT, BTN2_PIN, GPIO_MODE_IN_FL_NO_IT);
@@ -96,25 +98,25 @@ void main(void)
     uint8_t r = 0;
     while (1)
     {
-        // DEBUG
-        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
-
+        led_on(0);
         if(++r > 3)
             r = 1;
         sel_row(r);
+
         led_on(1);
+        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
         while(GPIO_ReadInputPin(BTN1_PORT, BTN1_PIN));
         delay(DELAY);
+
         led_on(2);
+        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
         while(GPIO_ReadInputPin(BTN2_PORT, BTN2_PIN));
         delay(DELAY);
+
         led_on(3);
+        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
         while(GPIO_ReadInputPin(BTN3_PORT, BTN3_PIN));
         delay(DELAY);
-        led_on(0);
-
-
-
     }
 }
 

@@ -350,4 +350,8 @@ Wire Wire Line
 Connection ~ 4075 2800
 Wire Wire Line
 	4075 2800 3525 2800
+Text GLabel 1750 1600 0    50   Input ~ 0
+COM2
+Text GLabel 1750 1800 0    50   Input ~ 0
+COM3
 $EndSCHEMATC
