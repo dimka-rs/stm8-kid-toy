@@ -30,6 +30,7 @@ Pin Nb	PINs	FUNCTIONs	LABELs
 20	PD3	GPIO_Output	COM2
 */
 
+/* Green */
 #define COM1_PORT GPIOD
 #define COM1_PIN  GPIO_PIN_2
 #define COM2_PORT GPIOD
@@ -37,6 +38,7 @@ Pin Nb	PINs	FUNCTIONs	LABELs
 #define COM3_PORT GPIOD
 #define COM3_PIN  GPIO_PIN_4
 
+/* Red */
 #define LED1_PORT GPIOC
 #define LED1_PIN  GPIO_PIN_5
 #define LED2_PORT GPIOC
@@ -44,6 +46,7 @@ Pin Nb	PINs	FUNCTIONs	LABELs
 #define LED3_PORT GPIOC
 #define LED3_PIN  GPIO_PIN_7
 
+/* Black */
 #define BTN1_PORT GPIOA
 #define BTN1_PIN  GPIO_PIN_1
 #define BTN2_PORT GPIOA

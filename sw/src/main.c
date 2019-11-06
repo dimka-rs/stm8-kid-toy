@@ -6,7 +6,7 @@
 #include "delay.h"
 
 /* Private defines -----------------------------------------------------------*/
-#define DELAY 50000
+#define DELAY 20000
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -32,8 +32,8 @@ static void sel_row(uint8_t row)
             break;
         case 3:
             GPIO_Init(COM1_PORT, COM1_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(COM3_PORT, COM3_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(COM2_PORT, COM2_PIN, GPIO_MODE_OUT_PP_HIGH_SLOW);
+            GPIO_Init(COM2_PORT, COM2_PIN, GPIO_MODE_IN_FL_NO_IT);
+            GPIO_Init(COM3_PORT, COM3_PIN, GPIO_MODE_OUT_PP_HIGH_SLOW);
             break;
     }
 }
