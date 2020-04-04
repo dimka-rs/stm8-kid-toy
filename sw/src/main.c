@@ -4,6 +4,8 @@
 #include "clock.h"
 #include "uart1.h"
 #include "delay.h"
+#include "led.h"
+#include "btn.h"
 
 /* Private defines -----------------------------------------------------------*/
 #define DELAY 20000
@@ -38,36 +40,6 @@ static void sel_row(uint8_t row)
     }
 }
 
-static void led_on(uint8_t led)
-{
-    switch(led)
-    {
-        case 0:
-            GPIO_Init(LED1_PORT, LED1_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED2_PORT, LED2_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED3_PORT, LED3_PIN, GPIO_MODE_IN_FL_NO_IT);
-            break;
-        case 1:
-            GPIO_Init(LED2_PORT, LED2_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED3_PORT, LED3_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED1_PORT, LED1_PIN, GPIO_MODE_OUT_PP_LOW_SLOW);
-            break;
-        case 2:
-            GPIO_Init(LED1_PORT, LED1_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED3_PORT, LED3_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED2_PORT, LED2_PIN, GPIO_MODE_OUT_PP_LOW_SLOW);
-            break;
-        case 3:
-            GPIO_Init(LED1_PORT, LED1_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED2_PORT, LED2_PIN, GPIO_MODE_IN_FL_NO_IT);
-            GPIO_Init(LED3_PORT, LED3_PIN, GPIO_MODE_OUT_PP_LOW_SLOW);
-            break;
-    }
-}
-
-
-
-
 void main(void)
 {
     // init clock
@@ -76,15 +48,8 @@ void main(void)
     // init uart for mp3 player and debug
     uart1_init();
 
-    // init gpio
-#if 0
-    sel_row(0);
-    led_on(0);
-#endif
-
-    GPIO_Init(BTN1_PORT, BTN1_PIN, GPIO_MODE_IN_FL_NO_IT);
-    GPIO_Init(BTN2_PORT, BTN2_PIN, GPIO_MODE_IN_FL_NO_IT);
-    GPIO_Init(BTN3_PORT, BTN3_PIN, GPIO_MODE_IN_FL_NO_IT);
+    // init buttons
+    btn_init();
 
     // init i2c for IMU
 
@@ -95,6 +60,7 @@ void main(void)
     // DEBUG
     GPIO_Init(GPIOB, GPIO_PIN_5, GPIO_MODE_OUT_PP_HIGH_SLOW);
 
+    // scan rows
     uint8_t r = 0;
     while (1)
     {
@@ -105,17 +71,17 @@ void main(void)
 
         led_on(1);
         GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
-        while(GPIO_ReadInputPin(BTN1_PORT, BTN1_PIN));
+        while(btn_read(1));
         delay(DELAY);
 
         led_on(2);
         GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
-        while(GPIO_ReadInputPin(BTN2_PORT, BTN2_PIN));
+        while(btn_read(2));
         delay(DELAY);
 
         led_on(3);
         GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
-        while(GPIO_ReadInputPin(BTN3_PORT, BTN3_PIN));
+        while(btn_read(3));
         delay(DELAY);
     }
 }
