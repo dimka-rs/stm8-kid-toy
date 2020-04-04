@@ -6,9 +6,11 @@
 #include "delay.h"
 #include "led.h"
 #include "btn.h"
+#include "beep.h"
 
 /* Private defines -----------------------------------------------------------*/
-#define DELAY 20000
+#define DELAY_BLINK 10000
+#define DELAY_CYCLE 30000
 
 /* Private function prototypes -----------------------------------------------*/
 
@@ -64,25 +66,21 @@ void main(void)
     uint8_t r = 0;
     while (1)
     {
-        led_on(0);
+        led_off_all();
         if(++r > 3)
             r = 1;
         sel_row(r);
 
-        led_on(1);
-        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
-        while(btn_read(1));
-        delay(DELAY);
+        if(btn_read(1) || btn_read(2) || btn_read(3))
+        {
+            led_on_all();
+            beep_on();
+            delay(DELAY_BLINK);
+            beep_off();
+            led_off_all();
+        }
 
-        led_on(2);
-        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
-        while(btn_read(2));
-        delay(DELAY);
-
-        led_on(3);
-        GPIO_WriteReverse(GPIOB, GPIO_PIN_5);
-        while(btn_read(3));
-        delay(DELAY);
+        delay(DELAY_CYCLE);
     }
 }
 

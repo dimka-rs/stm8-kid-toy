@@ -10,5 +10,7 @@
 #define LED3_PIN  GPIO_PIN_7
 
 void led_on(uint8_t led);
+void led_on_all();
+void led_off_all();
 
 #endif /* LED_H */
